@@ -1,0 +1,52 @@
+#Create Tables
+
+CREATE TABLE
+    employees(
+	    id serial PRIMARY KEY NOT NULL,
+		first_name VARCHAR(30),
+		last_name VARCHAR(50),
+		hiring_date date DEFAULT'2023-01-01',
+		salary NUMERIC(10, 2),
+		devices_number int
+	);
+	
+CREATE TABLE
+    departments(
+	    id serial PRIMARY KEY NOT NULL,
+		"name" VARCHAR(50),
+		code char(3),
+		description text
+	);
+	
+CREATE TABLE
+    issues(
+		id serial PRIMARY KEY UNIQUE,
+	    description VARCHAR(150),
+		"date" date,
+		start timestamp
+	);
+
+#Alter Tables 
+
+ALTER TABLE employees
+ADD COLUMN middle_name VARCHAR(50)
+
+#Add Constraints 
+
+ALTER TABLE employees
+ALTER COLUMN salary SET not null,
+ALTER COLUMN salary SET default 0,
+ALTER COLUMN hiring_date SET not null;
+
+#Modify Columns
+
+ALTER TABLE employees
+ALTER COLUMN middle_name TYPE VARCHAR(100);
+
+#Truncate Tables
+
+TRUNCATE TABLE issues
+
+#Drop Tables 
+
+DROP TABLE departments
