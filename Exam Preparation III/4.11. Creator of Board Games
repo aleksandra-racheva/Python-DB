@@ -1,0 +1,21 @@
+CREATE OR REPLACE FUNCTION fn_creator_with_board_games(
+	"name" VARCHAR(30)
+) RETURNS INT AS
+
+$$
+DECLARE
+	count_board_games INT;
+BEGIN
+	count_board_games = (
+		SELECT
+			COUNT(cbg.board_game_id)
+		FROM creators AS c JOIN creators_board_games AS cbg ON c.id = cbg.creator_id
+		WHERE c.first_name = "name"
+	); RETURN count_board_games;
+END;
+$$
+
+LANGUAGE plpgsql;
+
+SELECT fn_creator_with_board_games('Bruno');
+SELECT fn_creator_with_board_games('Alexander');
