@@ -1,0 +1,16 @@
+
+CREATE OR REPLACE FUNCTION fn_stadium_team_name(
+	stadium_name VARCHAR(30)
+) RETURNS SETOF RECORD AS
+
+$$
+DECLARE
+	r record;
+BEGIN
+	SELECT
+		COUNT(*)
+	FROM stadiums AS s JOIN teams AS t ON s.id = t.stadium_id;
+	RETURN NEXT r;
+END;
+$$
+LANGUAGE plpgsql;
